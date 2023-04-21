@@ -1,6 +1,7 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 
 import { ApiProperty } from "@nestjs/swagger";
+import { Event } from "./event.model";
 
 @Table({ tableName: "users" })
 export class User extends Model<User> {
@@ -48,4 +49,7 @@ export class User extends Model<User> {
     defaultValue: DataType.NOW,
   })
   updatedAt: Date;
+
+  @HasMany(() => Event)
+  events: Event[];
 }
