@@ -1,15 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  Model,
-  Table,
-} from "sequelize-typescript";
+import { Column, DataType, Model, Table } from "sequelize-typescript";
 import { IsDate, IsNotEmpty, IsString } from "class-validator";
-
-import { User } from "./user.model";
 
 @Table({ tableName: "events" })
 export class Event extends Model<Event> {
@@ -40,10 +31,7 @@ export class Event extends Model<Event> {
   @Column
   endDate: Date;
 
-  @ForeignKey(() => User)
+  @ApiPropertyOptional()
   @Column
   userId: string;
-
-  @BelongsTo(() => User)
-  user: User;
 }
